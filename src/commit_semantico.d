@@ -76,16 +76,16 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     icones ~=new IconeCommit("🔧","chore");
     icones ~=new IconeCommit("🧪","test");
     icones ~=new IconeCommit("🐛","bug");
-    icones ~=new IconeCommit("💥 ","fix");
+    icones ~=new IconeCommit("💥","fix");
     icones ~=new IconeCommit("📦","package");
     icones ~=new IconeCommit("📚","docs");
 
-    icones ~=new IconeCommit("⚡ ","perf");
-    icones ~=new IconeCommit("♻️ ","refactor");
-    icones ~=new IconeCommit("🧹 ","cleanup");
-    icones ~=new IconeCommit("🗑️ ","remove");
-    icones ~=new IconeCommit("🗃️ ","raw");
-    icones ~=new IconeCommit("🧱 ","ci");
+    icones ~=new IconeCommit("⚡","perf");
+    icones ~=new IconeCommit("♻️","refactor");
+    icones ~=new IconeCommit("🧹","cleanup");
+    icones ~=new IconeCommit("🗑️","remove");
+    icones ~=new IconeCommit("🗃️","raw");
+    icones ~=new IconeCommit("🧱","ci");
 
 
     if (commit_tipo.temValor()){
@@ -111,7 +111,9 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
 
     if(commit_escopo.temValor()){
-        publicar_mensagem ~= "(" ~ commit_escopo.get() ~ ")";
+        if(commit_escopo.get().length>0){
+            publicar_mensagem ~= "(" ~ commit_escopo.get() ~ ")";
+        }
     }
 
     if(commit_mensagem.temValor()){
