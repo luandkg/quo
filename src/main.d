@@ -1,6 +1,6 @@
 import std.stdio;
 
-void main(string[] args) {
+int main(string[] args) {
     writeln("");
     writeln("--------------------- QUO :: Commit Semântico @luandkg -----------------------");
     writeln("");
@@ -10,4 +10,6 @@ void main(string[] args) {
     foreach(index, arg; args){
         writeln("\t Argumento : ",index," = ",arg);
     }
+
+    return 0;
 }
