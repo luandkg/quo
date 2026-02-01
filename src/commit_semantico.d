@@ -13,7 +13,7 @@ void quo_construir(string[] argumentos){
 
     }else{
 
-        Opcional!string commit_tipo = new Opcional!string(argumentos[0]);
+        Opcional!string commit_tipo = new Opcional!string(strip(argumentos[0]));
         Opcional!string commit_escopo = new Opcional!string("");
         Opcional!string commit_mensagem = new Opcional!string();
 
@@ -22,9 +22,6 @@ void quo_construir(string[] argumentos){
         indice = parser_ate_opcionalmente(argumentos,indice,"-",commit_escopo);
         indice = parser_ate_opcionalmente(argumentos,indice,"==",commit_mensagem);
 
-
-        commit_tipo.set(strip(commit_tipo.get()));
-        commit_mensagem.set(strip(commit_mensagem.get()));
 
         writeln("\t COMMIT TIPO     :: ",commit_tipo.get());
         writeln("\t COMMIT ESCOPO   :: ",commit_escopo.get());
