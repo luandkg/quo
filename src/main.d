@@ -6,19 +6,12 @@ int main(string[] args) {
     writeln("--------------------- QUO :: Commit Semântico @luandkg -----------------------");
     writeln("");
 
-    writeln("Número de argumentos : ",args.length);
-
     string[] argumentos;
     foreach(index, arg; args){
-        writeln("\t Lendo : ",index," = ",arg);
         if( index> 0){
-            writeln("\t Adicionando : ",index," = ",arg);
             argumentos ~=arg;
         }
     }
-
-
-    writeln(argumentos);
 
     bool exibirAjuda = false;
 
@@ -39,6 +32,10 @@ int main(string[] args) {
     if(exibirAjuda){
         menuAjuda();
     }
+
+
+    writeln("");
+    writeln("------------------------------------------------------------------------------");
 
     return 0;
 }

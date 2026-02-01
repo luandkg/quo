@@ -1,11 +1,37 @@
 module commit_semantico;
 
 import std.stdio;
+import std.string;
 
 void quo_construir(string[] argumentos){
 
-    foreach(index, arg; argumentos){
-        writeln("\t ++ ",arg);
-    }
+    if(argumentos.length == 1){
 
+        writeln("\t ERRO :: é necessário mais de uma palavra para construir o commit semântico.");
+
+    }else{
+
+        string commit_tipo = argumentos[0];
+        string commit_escopo = "";
+
+        int indice = 1;
+        bool escopo_delimitado = false;
+
+
+        while(indice<argumentos.length && escopo_delimitado==false){
+            if(argumentos[indice] == "-"){
+                escopo_delimitado = true;
+            }else{
+                commit_escopo ~= " " ~ argumentos[indice];
+            }
+            indice+=1;
+        }
+
+        commit_tipo = strip(commit_tipo);
+        commit_escopo = strip(commit_escopo);
+
+        writeln("\t COMMIT TIPO   :: ",commit_tipo);
+        writeln("\t COMMIT ESCOPO :: ",commit_escopo);
+
+    }
 }
