@@ -102,6 +102,7 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     icones ~=new IconeCommit("🗑️","remove");
     icones ~=new IconeCommit("🗃️","raw");
     icones ~=new IconeCommit("🧱","ci");
+    icones ~=new IconeCommit("🛠️","build");
 
 
     bool numerado = false;
