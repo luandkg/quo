@@ -70,7 +70,22 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
     IconeCommit[] icones;
 
+    icones ~=new IconeCommit("🎉 ","init");
+
     icones ~=new IconeCommit("✨","feat");
+    icones ~=new IconeCommit("🔧","chore");
+    icones ~=new IconeCommit("🧪","test");
+    icones ~=new IconeCommit("🐛","bug");
+    icones ~=new IconeCommit("💥 ","fix");
+    icones ~=new IconeCommit("📦","package");
+    icones ~=new IconeCommit("📚","docs");
+
+    icones ~=new IconeCommit("⚡ ","perf");
+    icones ~=new IconeCommit("♻️ ","refactor");
+    icones ~=new IconeCommit("🧹 ","cleanup");
+    icones ~=new IconeCommit("🗑️ ","remove");
+    icones ~=new IconeCommit("🗃️ ","raw");
+    icones ~=new IconeCommit("🧱 ","ci");
 
 
     if (commit_tipo.temValor()){
