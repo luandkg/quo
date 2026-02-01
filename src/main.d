@@ -1,4 +1,5 @@
 import std.stdio;
+import commit_semantico;
 
 int main(string[] args) {
     writeln("");
@@ -26,6 +27,8 @@ int main(string[] args) {
 
         if(primeiro =="?"){
             exibirAjuda= true;
+        }else{
+            quo_construir(argumentos);
         }
 
     }else{
