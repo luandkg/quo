@@ -1,0 +1,9 @@
+{
+    "name": "quo",
+    "description": " Quo é um construtor de frases para commit semântico de forma brilhante e elegante.",
+    "authors": ["Luan"],
+    "license": "MIT",
+    "targetType": "executable",
+    "targetPath": "build",
+    "sourcePaths": ["src"]
+}
