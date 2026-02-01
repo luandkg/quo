@@ -18,10 +18,7 @@ void quo_construir(string[] argumentos){
         Opcional!string commit_mensagem = new Opcional!string();
 
         int indice = 1;
-        bool escopo_delimitado = false;
-        bool mensagem_delimitado = false;
-
-
+        
         indice = parser_ate_opcionalmente(argumentos,indice,"-",commit_escopo);
         indice = parser_ate_opcionalmente(argumentos,indice,"==",commit_mensagem);
 
