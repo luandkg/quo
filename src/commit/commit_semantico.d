@@ -3,6 +3,8 @@ module commit.semantico;
 
 import std.stdio;
 import std.string;
+import std.algorithm.searching;
+import std.conv;
 
 import algoritmos;
 import commit.icone;
@@ -39,15 +41,14 @@ void quo_construir(string[] argumentos){
         }
 
 
+        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem,varias_frases);
+
 
         writeln("\t COMMIT TIPO     :: ",commit_tipo.get());
         writeln("\t COMMIT ESCOPO   :: ",commit_escopo.get());
         writeln("\t COMMIT MENSAGEM :: ",commit_mensagem.get());
 
         writeln("");
-
-        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem,varias_frases);
-
 
         writeln("\t ",publicar_mensagem);
 
@@ -103,7 +104,16 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     icones ~=new IconeCommit("🧱","ci");
 
 
+    bool numerado = false;
+
+
     if (commit_tipo.temValor()){
+
+        if(canFind(commit_tipo.get(),"@numerado")){
+            commit_tipo.set(replace(commit_tipo.get(),"@numerado",""));
+            numerado= true;
+        }
+
 
         bool temIcone = false;
         string commit_icone = "";
@@ -139,8 +149,18 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
         string mensagem_longa = "";
 
+        int numerando =1;
+
         foreach(frase;varias_frases){
-            mensagem_longa ~= "\n" ~ frase;
+
+            string frase_local = frase;
+
+            if(numerado){
+                frase_local = to!string(numerando) ~ ") " ~ frase;
+                numerando+=1;
+            }
+
+            mensagem_longa ~= "\n" ~ frase_local;
         }
 
         publicar_mensagem ~= "\n" ~mensagem_longa;

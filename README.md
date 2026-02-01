@@ -82,7 +82,32 @@ O `main` interpreta os argumentos e gera a mensagem semântica com ícone.
 
 ---
 
-### Exemplo 5 — Ajuda
+### Exemplo 5 — Commit long com texto numerado
+
+```bash
+quo feat@numerado commit_longo - adiciona mecanismo de parser e construção de mensagem longa == Parser de várias mensagens == Construção de frase de commit longa
+```
+
+**Saída:**
+
+```
+--------------------- QUO :: Commit Semântico @luandkg -----------------------
+
+	 COMMIT TIPO     :: feat
+	 COMMIT ESCOPO   :: commit_longo
+	 COMMIT MENSAGEM :: adiciona mecanismo de parser e construção de mensagem longa
+
+	 ✨ feat(commit_longo): adiciona mecanismo de parser e construção de mensagem longa
+
+1) Parser de várias mensagens
+2) Construção de frase de commit longa
+```
+
+Esse formato ajuda a manter o histórico de commits organizado e fácil de entender, especialmente quando há várias partes envolvidas em uma mesma alteração.
+
+---
+
+### Exemplo 6 — Ajuda
 
 ```bash
 ./quo ?
