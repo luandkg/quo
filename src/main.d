@@ -1,4 +1,5 @@
 import std.stdio;
+import std.string;
 import commit.semantico;
 
 int main(string[] args) {
@@ -16,9 +17,9 @@ int main(string[] args) {
     bool exibirAjuda = false;
 
     if(argumentos.length> 0){
-        string primeiro = argumentos[0];
+        string primeiro = toUpper(argumentos[0]);
 
-        if(primeiro =="?"){
+        if(primeiro =="?" || primeiro == "AJUDA" || primeiro == "HELP"){
             exibirAjuda= true;
         }else{
             quo_construir(argumentos);
