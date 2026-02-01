@@ -13,9 +13,11 @@ void quo_construir(string[] argumentos){
 
         string commit_tipo = argumentos[0];
         string commit_escopo = "";
+        string commit_mensagem = "";
 
         int indice = 1;
         bool escopo_delimitado = false;
+        bool mensagem_delimitado = false;
 
 
         while(indice<argumentos.length && escopo_delimitado==false){
@@ -27,11 +29,24 @@ void quo_construir(string[] argumentos){
             indice+=1;
         }
 
+        while(indice<argumentos.length && mensagem_delimitado==false){
+            if(argumentos[indice] == "=="){
+                mensagem_delimitado = true;
+            }else{
+                commit_mensagem ~= " " ~ argumentos[indice];
+            }
+            indice+=1;
+        }
+
+
+
         commit_tipo = strip(commit_tipo);
         commit_escopo = strip(commit_escopo);
+        commit_mensagem = strip(commit_mensagem);
 
-        writeln("\t COMMIT TIPO   :: ",commit_tipo);
-        writeln("\t COMMIT ESCOPO :: ",commit_escopo);
+        writeln("\t COMMIT TIPO     :: ",commit_tipo);
+        writeln("\t COMMIT ESCOPO   :: ",commit_escopo);
+        writeln("\t COMMIT MENSAGEM :: ",commit_mensagem);
 
     }
 }
