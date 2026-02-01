@@ -4,6 +4,8 @@ import std.stdio;
 import std.string;
 
 import algoritmos;
+import commit_semantico_icone;
+ 
 
 void quo_construir(string[] argumentos){
 
@@ -65,8 +67,31 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
     string publicar_mensagem = "";
 
+
+    IconeCommit[] icones;
+
+    icones ~=new IconeCommit("✨","feat");
+
+
     if (commit_tipo.temValor()){
-        publicar_mensagem = commit_tipo.get();
+
+        bool temIcone = false;
+        string commit_icone = "";
+
+        foreach(icone;icones){
+            if(icone.getDescricao() == commit_tipo.get()){
+                temIcone=true;
+                commit_icone = icone.getIcone();
+                break;
+            }
+        }
+
+        if(temIcone){
+            publicar_mensagem = commit_icone ~ " " ~commit_tipo.get();
+        }else{
+            publicar_mensagem = commit_tipo.get();
+        }
+
     }
 
 
