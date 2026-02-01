@@ -25,6 +25,20 @@ void quo_construir(string[] argumentos){
         indice = parser_ate_opcionalmente(argumentos,indice,"-",commit_escopo);
         indice = parser_ate_opcionalmente(argumentos,indice,"==",commit_mensagem);
 
+        string[] varias_frases;
+
+        while(indice<argumentos.length){
+
+            Opcional!string frase_corrente = new Opcional!string();
+            indice = parser_ate_opcionalmente(argumentos,indice,"==",frase_corrente);
+
+            if(frase_corrente.temValor()){
+                varias_frases ~= frase_corrente.get();
+            }
+
+        }
+
+
 
         writeln("\t COMMIT TIPO     :: ",commit_tipo.get());
         writeln("\t COMMIT ESCOPO   :: ",commit_escopo.get());
@@ -32,7 +46,7 @@ void quo_construir(string[] argumentos){
 
         writeln("");
 
-        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem);
+        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem,varias_frases);
 
 
         writeln("\t ",publicar_mensagem);
@@ -64,7 +78,7 @@ int parser_ate_opcionalmente(string[] argumentos,int inicio,string delimitador,O
 }
 
 
-string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string commit_escopo,Opcional!string commit_mensagem){
+string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string commit_escopo,Opcional!string commit_mensagem,string[] varias_frases){
 
     string publicar_mensagem = "";
 
@@ -120,6 +134,19 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     if(commit_mensagem.temValor()){
         publicar_mensagem ~= ": " ~ commit_mensagem.get();
     }
+
+    if (varias_frases.length>0){
+
+        string mensagem_longa = "";
+
+        foreach(frase;varias_frases){
+            mensagem_longa ~= "\n" ~ frase;
+        }
+
+        publicar_mensagem ~= "\n" ~mensagem_longa;
+    }
+
+
 
     return publicar_mensagem;
 }
