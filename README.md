@@ -14,6 +14,8 @@ O objetivo é tornar o histórico de commits mais expressivo, legível e fácil 
 
 ---
 
+![Quo - sendo executado](prints/print_01.png)
+
 ## 📖 Exemplos de uso
 
 O programa é chamado pela linha de comando como:
@@ -95,6 +97,47 @@ O `main` interpreta os argumentos e gera a mensagem semântica com ícone.
 
 ---
 
+## Instalação do Quo a partir do GitHub (Linux)
+
+1. **Clone o repositório oficial:**
+
+   ```bash
+   git clone https://github.com/luandkg/quo.git
+   cd quo
+   ```
+
+2. **Compile o Quo usando `dub`:**
+
+   ```bash
+   dub build
+   ```
+
+   > Isso irá gerar o binário dentro da pasta `./build` (ou conforme a configuração do projeto).
+
+3. **Adicione o caminho do binário ao seu `.bashrc`:**
+   Abra o arquivo `.bashrc`:
+
+   ```bash
+   nano ~/.bashrc
+   ```
+
+   E adicione a seguinte linha ao final (ajuste o caminho conforme o local do build):
+
+   ```bash
+   export PATH="$HOME/quo/build:$PATH"
+   ```
+
+4. **Recarregue o `.bashrc`:**
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+5. **Teste a instalação:**
+   ```bash
+   quo ?
+   ```
+
 ## 🔮 Futuro
 
 O Quo pretende evoluir para:
@@ -102,7 +145,3 @@ O Quo pretende evoluir para:
 - Suporte a diferentes estilos de ícones.
 - Integração com pipelines de CI/CD para validação automática.
 - Extensões para editores e IDEs que sugiram mensagens de commit padronizadas.
-
-```
-
-```
