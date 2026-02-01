@@ -1,4 +1,5 @@
-module commit_semantico_icone;
+
+module commit.icone;
 
 class IconeCommit {
 

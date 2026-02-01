@@ -1,5 +1,5 @@
 import std.stdio;
-import commit_semantico;
+import commit.semantico;
 
 int main(string[] args) {
     writeln("");

@@ -1,10 +1,11 @@
-module commit_semantico;
+
+module commit.semantico;
 
 import std.stdio;
 import std.string;
 
 import algoritmos;
-import commit_semantico_icone;
+import commit.icone;
  
 
 void quo_construir(string[] argumentos){
