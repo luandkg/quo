@@ -3,6 +3,8 @@ module commit_semantico;
 import std.stdio;
 import std.string;
 
+import algoritmos;
+
 void quo_construir(string[] argumentos){
 
     if(argumentos.length == 1){
@@ -11,7 +13,7 @@ void quo_construir(string[] argumentos){
 
     }else{
 
-        string commit_tipo = argumentos[0];
+        Opcional!string commit_tipo = new Opcional!string(argumentos[0]);
         string commit_escopo = "";
         string commit_mensagem = "";
 
@@ -40,7 +42,7 @@ void quo_construir(string[] argumentos){
 
 
 
-        commit_tipo = strip(commit_tipo);
+        commit_tipo.set(strip(commit_tipo.get()));
         commit_escopo = strip(commit_escopo);
         commit_mensagem = strip(commit_mensagem);
 
