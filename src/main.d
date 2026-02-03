@@ -1,11 +1,21 @@
 import std.stdio;
 import std.string;
 import commit.semantico;
+import std.file;
+import std.path;
+import configuracoes;
 
 int main(string[] args) {
     writeln("");
     writeln("--------------------- QUO :: Commit Semântico @luandkg -----------------------");
     writeln("");
+
+    string pastaLocal = dirName(thisExePath());
+    string arquivoConfig = buildPath(pastaLocal, "quo.config");
+
+    //writeln("Executavel :: ",arquivoConfig);
+    string[string] configuracoes = ler(arquivoConfig);
+
 
     string[] argumentos;
     foreach(index, arg; args){
@@ -21,8 +31,17 @@ int main(string[] args) {
 
         if(primeiro =="?" || primeiro == "AJUDA" || primeiro == "HELP"){
             exibirAjuda= true;
+
+        }else if(primeiro == "@NUMERADO"){
+
+            alterar_numeracao(argumentos,arquivoConfig,configuracoes);
+        
+        }else if(primeiro == "@CONFIG"){
+
+            configuracoes_exibir(configuracoes);
+
         }else{
-            quo_construir(argumentos);
+            quo_construir(argumentos,configuracoes);
         }
 
     }else{

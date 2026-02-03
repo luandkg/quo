@@ -10,7 +10,7 @@ import algoritmos;
 import commit.icone;
  
 
-void quo_construir(string[] argumentos){
+void quo_construir(string[] argumentos,string[string] configuracoes){
 
     if(argumentos.length == 1){
 
@@ -41,7 +41,7 @@ void quo_construir(string[] argumentos){
         }
 
 
-        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem,varias_frases);
+        string publicar_mensagem = constroi_mensagem_de_commit(commit_tipo,commit_escopo,commit_mensagem,varias_frases,configuracoes);
 
 
         writeln("\t COMMIT TIPO     :: ",commit_tipo.get());
@@ -79,7 +79,7 @@ int parser_ate_opcionalmente(string[] argumentos,int inicio,string delimitador,O
 }
 
 
-string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string commit_escopo,Opcional!string commit_mensagem,string[] varias_frases){
+string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string commit_escopo,Opcional!string commit_mensagem,string[] varias_frases,string[string] configuracoes){
 
     string publicar_mensagem = "";
 
@@ -107,6 +107,9 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
     bool numerado = false;
 
+    if(configuracoes["NUMERADO"] == "SIM"){
+        numerado = true;
+    }
 
     if (commit_tipo.temValor()){
 
