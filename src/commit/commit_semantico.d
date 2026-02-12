@@ -104,9 +104,13 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     icones ~=new IconeCommit("🧱","ci");
     icones ~=new IconeCommit("🛠️","build");
 
-
+    bool emoji = false;
     bool numerado = false;
     bool hifen = false;
+
+    if(configuracoes["EMOJI"] == "SIM"){
+        emoji = true;
+    }
 
     if(configuracoes["NUMERADO"] == "SIM"){
         numerado = true;
@@ -117,6 +121,11 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     }
 
     if (commit_tipo.temValor()){
+
+        if(canFind(commit_tipo.get(),"@emoji")){
+            commit_tipo.set(replace(commit_tipo.get(),"@emoji",""));
+            emoji = true;
+        }
 
         if(canFind(commit_tipo.get(),"@numerado")){
             commit_tipo.set(replace(commit_tipo.get(),"@numerado",""));
@@ -140,7 +149,7 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
             }
         }
 
-        if(temIcone){
+        if(temIcone && emoji){
             publicar_mensagem = commit_icone ~ " " ~commit_tipo.get();
         }else{
             publicar_mensagem = commit_tipo.get();

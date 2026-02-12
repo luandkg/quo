@@ -40,6 +40,11 @@ int main(string[] args) {
 
             alterar_hifen(argumentos,arquivoConfig,configuracoes);
 
+        }else if(primeiro == "@EMOJI"){
+
+            alterar_emoji(argumentos,arquivoConfig,configuracoes);
+
+
         }else if(primeiro == "@CONFIG"){
 
             configuracoes_exibir(configuracoes);
