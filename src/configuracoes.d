@@ -24,6 +24,7 @@ string[string] ler(string arquivoLocal){
 
     }else{
         configuracoes["NUMERADO"] = "NAO";
+        configuracoes["HIFEN"] = "NAO";
     }
 
 
@@ -71,6 +72,30 @@ void alterar_numeracao(string[] argumentos,string arquivoConfig,string[string] c
 
 }
 
+void alterar_hifen(string[] argumentos,string arquivoConfig,string[string] configuracoes){
+
+    if(argumentos.length == 2){
+
+        string valor = toUpper(argumentos[1]);
+
+        writeln("\t ++ Hifen -->> ",valor);
+
+        if(valor == "SIM" || valor == "NAO"){
+
+            configuracoes["HIFEN"] = valor;
+
+            guardar(arquivoConfig,configuracoes);
+
+            writeln("\t >> configurações atualizadas !!!");
+
+        }else{
+             writeln("\t ERRO = o valor informado é inválido. Use SIM ou NAO.");
+        }
+    }else{
+        writeln("\t ERRO = são dois argumentos.");    
+    }
+
+}
 
 void configuracoes_exibir(string[string] configuracoes){
 

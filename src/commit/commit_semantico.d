@@ -106,16 +106,26 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
 
     bool numerado = false;
+    bool hifen = false;
 
     if(configuracoes["NUMERADO"] == "SIM"){
         numerado = true;
+    }
+
+    if(configuracoes["HIFEN"] == "SIM"){
+        hifen = true;
     }
 
     if (commit_tipo.temValor()){
 
         if(canFind(commit_tipo.get(),"@numerado")){
             commit_tipo.set(replace(commit_tipo.get(),"@numerado",""));
-            numerado= true;
+            numerado = true;
+        }
+
+        if(canFind(commit_tipo.get(),"@hifen")){
+            commit_tipo.set(replace(commit_tipo.get(),"@hifen",""));
+            hifen = true;
         }
 
 
@@ -157,12 +167,20 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
 
         foreach(frase;varias_frases){
 
-            string frase_local = frase;
+            string frase_local = "";
+
+            if(hifen){
+                frase_local = "- ";
+            }
 
             if(numerado){
-                frase_local = to!string(numerando) ~ ") " ~ frase;
+                frase_local = frase_local ~ to!string(numerando) ~ ") ";
                 numerando+=1;
             }
+
+
+            frase_local = frase_local ~ frase;
+
 
             mensagem_longa ~= "\n" ~ frase_local;
         }

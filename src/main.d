@@ -36,6 +36,10 @@ int main(string[] args) {
 
             alterar_numeracao(argumentos,arquivoConfig,configuracoes);
         
+        }else if(primeiro == "@HIFEN"){
+
+            alterar_hifen(argumentos,arquivoConfig,configuracoes);
+
         }else if(primeiro == "@CONFIG"){
 
             configuracoes_exibir(configuracoes);
