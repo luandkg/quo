@@ -8,9 +8,12 @@ import std.conv;
 
 import algoritmos;
 import commit.icone;
+import algoritmos;
  
 
-void quo_construir(string[] argumentos,string[string] configuracoes){
+Opcional!string quo_construir(string[] argumentos,string[string] configuracoes){
+
+    Opcional!string retorno = new Opcional!string();
 
     if(argumentos.length == 1){
 
@@ -52,9 +55,12 @@ void quo_construir(string[] argumentos,string[string] configuracoes){
 
         writeln("\t ",publicar_mensagem);
 
+        retorno.set(publicar_mensagem);
+
 
     }
 
+    return retorno;
 }
 
 int parser_ate_opcionalmente(string[] argumentos,int inicio,string delimitador,Opcional!string resultado){
@@ -121,6 +127,11 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     }
 
     if (commit_tipo.temValor()){
+
+        if(canFind(commit_tipo.get(),"@emoji_nao")){
+            commit_tipo.set(replace(commit_tipo.get(),"@emoji",""));
+            emoji = false;
+        }
 
         if(canFind(commit_tipo.get(),"@emoji")){
             commit_tipo.set(replace(commit_tipo.get(),"@emoji",""));

@@ -1,9 +1,12 @@
 import std.stdio;
 import std.string;
+import std.algorithm : remove;
 import commit.semantico;
 import std.file;
 import std.path;
 import configuracoes;
+import algoritmos;
+import std.process;
 
 int main(string[] args) {
     writeln("");
@@ -17,12 +20,8 @@ int main(string[] args) {
     string[string] configuracoes = ler(arquivoConfig);
 
 
-    string[] argumentos;
-    foreach(index, arg; args){
-        if( index> 0){
-            argumentos ~=arg;
-        }
-    }
+    string[] argumentos = args.remove(0);
+
 
     bool exibirAjuda = false;
 
@@ -48,6 +47,17 @@ int main(string[] args) {
         }else if(primeiro == "@CONFIG"){
 
             configuracoes_exibir(configuracoes);
+
+        }else if(primeiro == "@COMMIT"){
+
+            argumentos = argumentos.remove(0);
+            Opcional!string mensagem_commit  = quo_construir(argumentos,configuracoes);
+
+            if(mensagem_commit.temValor()){
+                string comando = "git commit -m \"" ~ mensagem_commit.get() ~ "\"";
+                writeln("\t Executando :: ",comando);
+                executeShell(comando);
+            }
 
         }else{
             quo_construir(argumentos,configuracoes);
