@@ -165,7 +165,9 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
     }
 
     if(commit_mensagem.temValor()){
-        publicar_mensagem ~= ": " ~ commit_mensagem.get();
+        if (commit_mensagem.get().length>0){
+            publicar_mensagem ~= ": " ~ commit_mensagem.get();
+        }
     }
 
     if (varias_frases.length>0){
