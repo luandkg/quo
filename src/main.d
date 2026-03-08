@@ -16,9 +16,7 @@ int main(string[] args) {
     string pastaLocal = dirName(thisExePath());
     string arquivoConfig = buildPath(pastaLocal, "quo.config");
 
-    //writeln("Executavel :: ",arquivoConfig);
     string[string] configuracoes = ler(arquivoConfig);
-
 
     string[] argumentos = args.remove(0);
 
@@ -29,6 +27,7 @@ int main(string[] args) {
         string primeiro = toUpper(argumentos[0]);
 
         if(primeiro =="?" || primeiro == "AJUDA" || primeiro == "HELP"){
+            
             exibirAjuda= true;
 
         }else if(primeiro == "@NUMERADO"){
@@ -43,7 +42,6 @@ int main(string[] args) {
 
             alterar_emoji(argumentos,arquivoConfig,configuracoes);
 
-
         }else if(primeiro == "@CONFIG"){
 
             configuracoes_exibir(configuracoes);
@@ -55,7 +53,7 @@ int main(string[] args) {
 
             if(mensagem_commit.temValor()){
                 string comando = "git commit -m \"" ~ mensagem_commit.get() ~ "\"";
-                writeln("\t Executando :: ",comando);
+                writeln("\n\t Executando :: ",comando);
                 executeShell(comando);
             }
 

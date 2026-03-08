@@ -201,6 +201,14 @@ string constroi_mensagem_de_commit(Opcional!string commit_tipo,Opcional!string c
             }
 
 
+            while(canFind(frase,"ref::")){
+              frase = replace(frase,"ref::","refs #");
+            } 
+
+            while(canFind(frase,"fecha::")){
+              frase = replace(frase,"fecha::","closes #");
+            } 
+
             frase_local = frase_local ~ frase;
 
 
